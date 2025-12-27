@@ -1,14 +1,12 @@
-
-
-# Anubhav Singh - Frontend Developer Portfolio
+# Anubhav Singh - Self Introduction & Portfolio
 
 A modern, responsive portfolio website showcasing my frontend development skills and projects.
 
 ## 🌐 Live Demo
 
-**Vercel Deployment**: https://my-portfolio-black-five-65.vercel.app
+**Vercel Deployment**: Coming soon...
 
-**Dashboard**: https://vercel.com/anubhav2022ug3024-2719s-projects/my-portfolio
+**GitHub Repository**: https://github.com/Anubhav3024/self_intro
 
 ## 📋 About
 
@@ -36,7 +34,6 @@ This is a professional portfolio website built with modern web technologies. It 
 ## 💻 Getting Started
 
 ### Prerequisites
-
 - Node.js & npm installed ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
 - Git for version control
 
@@ -44,10 +41,10 @@ This is a professional portfolio website built with modern web technologies. It 
 
 ```sh
 # Step 1: Clone the repository
-git clone https://github.com/Anubhav3024/my-portfolio-hub.git
+git clone https://github.com/Anubhav3024/self_intro.git
 
 # Step 2: Navigate to the project directory
-cd my-portfolio
+cd self_intro
 
 # Step 3: Install dependencies
 npm install
@@ -78,16 +75,9 @@ npm run lint
 
 ### Deploy to Vercel (Recommended)
 
-This project is already deployed on Vercel and automatically redeploys on every push to the main branch.
-
-**One-click deployment:**
-
-1. Click the Deploy button below (if you have a Vercel account)
-2. Connect your GitHub repository
-3. Vercel will automatically build and deploy
+This project is deployed on Vercel and automatically redeploys on every push to the main branch.
 
 **Manual deployment:**
-
 ```sh
 npm install -g vercel
 vercel --prod
