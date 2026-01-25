@@ -1,21 +1,19 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import EducationSection from "@/components/EducationSection";
+import JourneySection from "@/components/JourneySection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ExtraCurricularSection from "@/components/ExtraCurricularSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Header />
       <main>
         <HeroSection />
-        <EducationSection />
+        <JourneySection />
         <SkillsSection />
         <ProjectsSection />
-        <ExtraCurricularSection />
       </main>
       <Footer />
     </div>

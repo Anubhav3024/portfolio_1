@@ -34,6 +34,7 @@ This is a professional portfolio website built with modern web technologies. It 
 ## 💻 Getting Started
 
 ### Prerequisites
+
 - Node.js & npm installed ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
 - Git for version control
 
@@ -78,6 +79,7 @@ npm run lint
 This project is deployed on Vercel and automatically redeploys on every push to the main branch.
 
 **Manual deployment:**
+
 ```sh
 npm install -g vercel
 vercel --prod

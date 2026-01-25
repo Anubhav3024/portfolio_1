@@ -1,21 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { name: "Home", href: "#home" },
-  { name: "Education", href: "#education" },
+  { name: "Journey", href: "#journey" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#home" className="font-serif text-2xl font-bold text-foreground hover:text-primary transition-colors">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-border/50 py-4 shadow-lg"
+          : "bg-transparent py-6"
+      }`}
+    >
+      <div className="container mx-auto px-6 flex items-center justify-between">
+        <a
+          href="#home"
+          className={`font-serif text-2xl font-bold transition-colors duration-300 ${
+            isScrolled ? "text-foreground" : "text-primary"
+          }`}
+        >
           anubhav.
         </a>
 
@@ -25,7 +45,11 @@ const Header = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-muted-foreground font-medium hover:text-primary transition-colors duration-300"
+              className={`font-medium transition-colors duration-300 ${
+                isScrolled
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-[#0a192f]/80 hover:text-primary"
+              }`}
             >
               {link.name}
             </a>
@@ -39,7 +63,13 @@ const Header = () => {
           className="md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {isMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu
+              className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-[#0a192f]"}`}
+            />
+          )}
         </Button>
       </div>
 
