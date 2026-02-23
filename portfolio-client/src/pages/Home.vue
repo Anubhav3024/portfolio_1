@@ -2239,37 +2239,104 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   .burger {
     display: flex;
   }
+  .hero-section {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+  }
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .hero-left {
+    margin-bottom: 2rem;
+    order: 1;
+  }
+  .photo-section {
+    width: 280px;
+    height: 280px;
+    transform: none;
+    margin-top: 2rem;
+  }
+  .photo-ring {
+    width: 260px;
+    height: 260px;
+  }
+  .social-row {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 1rem;
+    justify-content: center;
+    gap: 1rem;
+    height: auto;
+    align-items: center;
+  }
+  .light-button button.bt {
+    height: 80px;
+  }
+  .light-button button.bt .button-holder {
+    width: 50px;
+    height: 50px;
+  }
+  .light-button button.bt .light-holder {
+    height: 80px;
   }
   .hero-right {
     margin-top: 0;
     align-items: center;
     text-align: center;
+    padding-left: 0;
+    order: 2;
   }
   .about-block {
     margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .hero-btns {
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 2rem;
+  }
+  .btn-lg {
+    width: 100%;
   }
   .journey-grid {
     grid-template-columns: 1fr;
   }
-  .hero-left {
-    margin-bottom: -1rem;
-  }
   /* Journey Responsive Adjustments */
   .journey-stack {
-    padding-left: 0.5rem;
+    padding-left: 0rem;
+    gap: 3rem;
   }
   .journey-stack::before {
-    left: 27px; /* 8px(pad) + 19px(center) */
+    left: 23px;
   }
   .journey-segment .card-list,
   .journey-segment .journey-card-grid {
     padding-left: 2.5rem;
+    grid-template-columns: 1fr;
   }
   .col-title {
-    font-size: 1.4rem;
-    gap: 0.85rem;
+    font-size: 1.3rem;
+    gap: 0.75rem;
+  }
+  .edu-card,
+  .journey-card {
+    padding: 1rem !important;
+  }
+  .jcard-name {
+    font-size: 1rem;
+  }
+  .jcard-desc {
+    font-size: 0.85rem;
+  }
+  .cert-img-wrap {
+    height: 140px;
   }
 }
 </style>
