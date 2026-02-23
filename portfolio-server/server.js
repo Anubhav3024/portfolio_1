@@ -19,9 +19,12 @@ const requiredEnv = [
 ];
 const missingEnv = requiredEnv.filter((env) => !process.env[env]);
 if (missingEnv.length > 0) {
-  console.error(
-    `❌ Missing critical environment variables: ${missingEnv.join(", ")}`,
-  );
+  console.error("=================================================");
+  console.error("❌ CRITICAL ERROR: Missing Environment Variables");
+  console.error("The following required keys are NOT set:");
+  missingEnv.forEach((env) => console.error(`   - ${env}`));
+  console.error("Please add these in your Render/Vercel dashboard.");
+  console.error("=================================================");
   process.exit(1);
 }
 
@@ -72,6 +75,15 @@ mongoose
     );
   })
   .catch((err) => {
-    console.error("❌ MongoDB connection failed:", err.message);
+    console.error("=================================================");
+    console.error("❌ CRITICAL ERROR: MongoDB Connection Failed");
+    console.error(`Error Message: ${err.message}`);
+    console.error("\nPossible Causes:");
+    console.error("1. Invalid MONGO_URI in environment variables.");
+    console.error(
+      "2. IP Address not whitelisted in MongoDB Atlas (add 0.0.0.0/0).",
+    );
+    console.error("3. MongoDB Atlas cluster is paused or down.");
+    console.error("=================================================");
     process.exit(1);
   });
