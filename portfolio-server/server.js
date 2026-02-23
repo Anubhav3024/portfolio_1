@@ -10,11 +10,33 @@ const skillsRoutes = require("./routes/skills");
 const projectsRoutes = require("./routes/projects");
 const experienceRoutes = require("./routes/experience");
 
+// ─── Environment Validation ──────────────────────────────────────────────────
+const requiredEnv = [
+  "MONGO_URI",
+  "JWT_SECRET",
+  "ADMIN_USERNAME",
+  "ADMIN_PASSWORD",
+];
+const missingEnv = requiredEnv.filter((env) => !process.env[env]);
+if (missingEnv.length > 0) {
+  console.error(
+    `❌ Missing critical environment variables: ${missingEnv.join(", ")}`,
+  );
+  process.exit(1);
+}
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ─── Middleware ────────────────────────────────────────────────────────────────
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: true, // Reflects the request origin, allows any origin but more robustly
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
