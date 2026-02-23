@@ -6,7 +6,7 @@ const {
 } = require("../controllers/profileController");
 const { protect } = require("../middleware/auth");
 
-router.get("/", getProfile);
-router.put("/", protect, updateProfile);
+router.get("/profile", getProfile);
+router.put("/profile", protect, updateProfile);
 
 module.exports = router;

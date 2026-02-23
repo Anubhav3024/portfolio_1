@@ -10,10 +10,10 @@ const {
   reorderProjects,
 } = require("../controllers/projectsController");
 
-router.get("/", getProjects);
-router.post("/", protect, upload.single("thumbnail"), createProject);
-router.put("/:id", protect, upload.single("thumbnail"), updateProject);
-router.delete("/:id", protect, deleteProject);
-router.post("/reorder", protect, reorderProjects);
+router.get("/projects", getProjects);
+router.post("/projects", protect, upload.single("thumbnail"), createProject);
+router.put("/projects/:id", protect, upload.single("thumbnail"), updateProject);
+router.delete("/projects/:id", protect, deleteProject);
+router.post("/projects/reorder", protect, reorderProjects);
 
 module.exports = router;

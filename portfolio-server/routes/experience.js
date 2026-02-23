@@ -8,9 +8,9 @@ const {
   deleteExperience,
 } = require("../controllers/experienceController");
 
-router.get("/", getExperience);
-router.post("/", protect, createExperience);
-router.put("/:id", protect, updateExperience);
-router.delete("/:id", protect, deleteExperience);
+router.get("/experience", getExperience);
+router.post("/experience", protect, createExperience);
+router.put("/experience/:id", protect, updateExperience);
+router.delete("/experience/:id", protect, deleteExperience);
 
 module.exports = router;

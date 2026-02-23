@@ -19,12 +19,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
-app.use("/api/login", authRoutes);
-app.use("/api/profile", profileRoutes);
-app.use("/api", journeyRoutes); // /api/education, /api/certifications, /api/contributions
-app.use("/api/skills", skillsRoutes);
-app.use("/api/projects", projectsRoutes);
-app.use("/api/experience", experienceRoutes);
+app.use("/api", authRoutes);
+app.use("/api", profileRoutes);
+app.use("/api", journeyRoutes);
+app.use("/api", skillsRoutes);
+app.use("/api", projectsRoutes);
+app.use("/api", experienceRoutes);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 app.get("/api/health", (req, res) =>
