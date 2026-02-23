@@ -19,13 +19,20 @@ const requiredEnv = [
 ];
 const missingEnv = requiredEnv.filter((env) => !process.env[env]);
 if (missingEnv.length > 0) {
-  console.error("=================================================");
-  console.error("❌ CRITICAL ERROR: Missing Environment Variables");
-  console.error("The following required keys are NOT set:");
-  missingEnv.forEach((env) => console.error(`   - ${env}`));
-  console.error("Please add these in your Render/Vercel dashboard.");
-  console.error("=================================================");
-  process.exit(1);
+  console.log("=================================================");
+  console.log("❌ CRITICAL ERROR: Missing Environment Variables");
+  console.log("The following required keys are NOT set:");
+  missingEnv.forEach((env) => console.log(`   - ${env}`));
+  console.log(
+    "Please add these in your Render Environment Variables dashboard.",
+  );
+  console.log("=================================================");
+
+  // Wait 1s for logs to flush before exiting
+  setTimeout(() => {
+    process.exit(1);
+  }, 1000);
+  return; // Stop execution
 }
 
 const app = express();
@@ -67,23 +74,29 @@ app.use((err, req, res, next) => {
 
 // ─── DB + Start ───────────────────────────────────────────────────────────────
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 10000, // Fail faster (10s) to show logs sooner
+  })
   .then(() => {
-    console.log("✅ MongoDB connected");
-    app.listen(PORT, () =>
-      console.log(`🚀 Server running on http://localhost:${PORT}`),
-    );
+    console.log("✅ MongoDB connected successfully");
+    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   })
   .catch((err) => {
-    console.error("=================================================");
-    console.error("❌ CRITICAL ERROR: MongoDB Connection Failed");
-    console.error(`Error Message: ${err.message}`);
-    console.error("\nPossible Causes:");
-    console.error("1. Invalid MONGO_URI in environment variables.");
-    console.error(
-      "2. IP Address not whitelisted in MongoDB Atlas (add 0.0.0.0/0).",
+    console.log("=================================================");
+    console.log("❌ CRITICAL ERROR: MongoDB Connection Failed");
+    console.log(`Error Message: ${err.message}`);
+    console.log("\nPossible Causes:");
+    console.log("1. Invalid MONGO_URI in your Render Environment Variables.");
+    console.log("2. IP Address NOT whitelisted in MongoDB Atlas.");
+    console.log("   👉 Go to MongoDB Atlas -> Network Access");
+    console.log(
+      "   👉 Click 'Add IP Address' -> 'Allow Access From Anywhere' (0.0.0.0/0)",
     );
-    console.error("3. MongoDB Atlas cluster is paused or down.");
-    console.error("=================================================");
-    process.exit(1);
+    console.log("3. Your MongoDB Cluster is currently paused or unreachable.");
+    console.log("=================================================");
+
+    // Wait 1s for logs to flush before exiting
+    setTimeout(() => {
+      process.exit(1);
+    }, 1000);
   });
