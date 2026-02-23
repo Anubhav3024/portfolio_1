@@ -2338,5 +2338,31 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
   .cert-img-wrap {
     height: 140px;
   }
+  /* Projects Responsive Adjustments */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 0 1rem;
+  }
+  .project-card {
+    transform: none !important;
+    perspective: none !important;
+  }
+  .project-card:hover {
+    transform: translateY(-5px) !important;
+  }
+  .proj-body {
+    padding: 1rem;
+  }
+  .proj-title {
+    font-size: 1rem;
+  }
+  .proj-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .proj-img-wrap {
+    aspect-ratio: 16/10;
+  }
 }
 </style>
