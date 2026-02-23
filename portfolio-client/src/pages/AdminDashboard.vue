@@ -681,20 +681,38 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="label">Start Year</label
-              ><input
-                v-model.number="modalForm.startYear"
+              <label class="label">Start Month</label>
+              <select v-model="modalForm.startMonth" class="input">
+                <option v-for="m in months" :key="m" :value="m">{{ m }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="label">Start Year</label>
+              <input
+                v-model="modalForm.startYear"
                 class="input"
-                type="number"
                 placeholder="2020"
               />
             </div>
+          </div>
+          <div class="form-group mt-2">
+            <label class="checkbox-label">
+              <input type="checkbox" v-model="modalForm.isPresent" />
+              <span>I currently work here</span>
+            </label>
+          </div>
+          <div class="form-row" v-if="!modalForm.isPresent">
             <div class="form-group">
-              <label class="label">End Year (leave blank for Present)</label
-              ><input
-                v-model.number="modalForm.endYear"
+              <label class="label">End Month</label>
+              <select v-model="modalForm.endMonth" class="input">
+                <option v-for="m in months" :key="m" :value="m">{{ m }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="label">End Year</label>
+              <input
+                v-model="modalForm.endYear"
                 class="input"
-                type="number"
                 placeholder="2024"
               />
             </div>
@@ -789,6 +807,20 @@ const modalTitles = {
 const activeTab = ref("profile");
 const saving = ref(false);
 const toast = reactive({ show: false, message: "", type: "success" });
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 const pf = reactive({
@@ -828,9 +860,28 @@ const openModal = (type, existing = null) => {
       modalForm.skillsRaw = (existing.skills || []).join(", ");
     if (type === "projects")
       modalForm.techStackRaw = (existing.techStack || []).join(", ");
+    if (type === "experience") {
+      if (existing.startYear) {
+        const [m, y] = existing.startYear.split(" ");
+        modalForm.startMonth = m || "Jan";
+        modalForm.startYear = y || "";
+      }
+      if (existing.endYear) {
+        const [m, y] = existing.endYear.split(" ");
+        modalForm.endMonth = m || "Jan";
+        modalForm.endYear = y || "";
+      } else {
+        modalForm.isPresent = true;
+      }
+    }
   } else {
     if (type === "skills") modalForm.skillsRaw = "";
     if (type === "projects") modalForm.techStackRaw = "";
+    if (type === "experience") {
+      modalForm.startMonth = "Jan";
+      modalForm.endMonth = "Jan";
+      modalForm.isPresent = false;
+    }
   }
   modal.open = true;
 };
@@ -953,9 +1004,16 @@ const saveModal = async () => {
       isEdit ? await updateProject(id, fd) : await createProject(fd);
       projects.value = (await getProjects()).data;
     } else if (type === "experience") {
+      const payload = { ...modalForm };
+      payload.startYear =
+        `${modalForm.startMonth} ${modalForm.startYear}`.trim();
+      payload.endYear = modalForm.isPresent
+        ? ""
+        : `${modalForm.endMonth} ${modalForm.endYear}`.trim();
+
       isEdit
-        ? await updateExperience(id, modalForm)
-        : await createExperience(modalForm);
+        ? await updateExperience(id, payload)
+        : await createExperience(payload);
       experience.value = (await getExperience()).data;
     }
     showToast(`${modalTitles[type]} ${isEdit ? "updated" : "created"}!`);
@@ -1349,5 +1407,23 @@ onMounted(fetchAll);
 .btn-icon:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--foreground);
+  cursor: pointer;
+  user-select: none;
+}
+.checkbox-label input {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+.mt-2 {
+  margin-top: 0.75rem;
 }
 </style>
