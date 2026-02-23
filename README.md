@@ -24,12 +24,11 @@ This is a professional portfolio website built with modern web technologies. It 
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: React 18
-- **Build Tool**: Vite
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Components**: shadcn-ui
-- **Package Manager**: npm
+- **Frontend**: Vue 3, Vite, Pinia, Axios
+- **Backend**: Node.js, Express
+- **Database**: MongoDB (Atlas)
+- **Styling**: Vanilla CSS (Premium Custom Design)
+- **Deployment**: Vercel (Frontend), Backend (Self-hosted/Repl.it/etc)
 
 ## 💻 Getting Started
 
@@ -42,19 +41,23 @@ This is a professional portfolio website built with modern web technologies. It 
 
 ```sh
 # Step 1: Clone the repository
-git clone https://github.com/Anubhav3024/self_intro.git
+git clone https://github.com/Anubhav3024/portfolio_1.git
 
 # Step 2: Navigate to the project directory
-cd self_intro
+cd portfolio_1
 
-# Step 3: Install dependencies
+# Step 3: Install & Start Backend
+cd portfolio-server
 npm install
+npm run dev
 
-# Step 4: Start the development server
+# Step 4: Install & Start Frontend (In a new terminal)
+cd ../portfolio-client
+npm install
 npm run dev
 ```
 
-The application will start at `http://localhost:8080` (or the next available port)
+The application will start at `http://localhost:5173` (Frontend) and `http://localhost:5000` (Backend)
 
 ## 📦 Available Scripts
 
