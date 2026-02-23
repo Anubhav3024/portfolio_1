@@ -4,8 +4,8 @@ const educationSchema = new mongoose.Schema(
   {
     degree: { type: String, required: true },
     institution: { type: String, required: true },
-    startYear: { type: Number, required: true },
-    endYear: { type: Number }, // null means "Present"
+    startYear: { type: String, required: true },
+    endYear: { type: String }, // null means "Present"
     score: { type: String }, // Percentage or CGPA
     description: { type: String, default: "" },
   },
