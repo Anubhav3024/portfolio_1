@@ -50,6 +50,12 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// ─── Request Logger (Debug) ──────────────────────────────────────────────────
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
 // ─── Routes ───────────────────────────────────────────────────────────────────
 app.use("/api", authRoutes);
 app.use("/api", profileRoutes);
