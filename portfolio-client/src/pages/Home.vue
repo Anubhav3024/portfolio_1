@@ -45,7 +45,7 @@
 
     <main>
       <!-- ─── HERO ─────────────────────────────────────────────────── -->
-      <section id="home" class="hero-section reveal">
+      <section id="home" class="hero-section">
         <div class="hero-bg-top"></div>
         <div class="hero-bg-bottom">
           <!-- Background decorative dots moved here for better blending -->
@@ -259,7 +259,7 @@
       </section>
 
       <!-- ─── JOURNEY ───────────────────────────────────────────────── -->
-      <section id="journey" class="section bg-alt reveal">
+      <section id="journey" class="section bg-alt">
         <div class="container">
           <h2 class="section-title">
             My <span class="text-gradient">Journey</span>
@@ -537,7 +537,7 @@
       </section>
 
       <!-- ─── SKILLS ────────────────────────────────────────────────── -->
-      <section id="skills" class="section bg-white reveal">
+      <section id="skills" class="section bg-white">
         <div class="container">
           <h2 class="section-title" style="color: #0a192f">
             Technical <span class="text-gradient">Skills</span>
@@ -578,7 +578,7 @@
       </section>
 
       <!-- ─── PROJECTS ──────────────────────────────────────────────── -->
-      <section id="projects" class="section reveal">
+      <section id="projects" class="section">
         <div class="container">
           <h2 class="section-title">
             My <span class="text-gradient">Projects</span>
